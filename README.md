@@ -1,240 +1,468 @@
-# ProofTask
+# ProofTask 🎯
 
-**Verification-Driven Productivity Agent**
+**Don't just say you did it. Show the receipts.**
 
-ProofTask is a task management app that requires users to submit evidence—such as URLs, screenshots, text responses, or code commits—before marking a task complete. It uses AI-based content, vision, and web-verification workflows to assess evidence. When evidence is insufficient, the app delivers humorous passive-aggressive feedback and introduces lightweight accountability challenges.
+ProofTask is an AI-powered task management app that holds you accountable by requiring real proof of completion. No more empty checkboxes – submit evidence and let AI verify your work.
 
-## Features
+<div align="center">
+  
+![Flutter](https://img.shields.io/badge/Flutter-3.10.0-02569B?logo=flutter)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Latest-47A248?logo=mongodb)
+![Grok AI](https://img.shields.io/badge/Grok_AI-Powered-7C3AED)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-### Core Functionality
-- **Evidence-Based Completion**: No checkbox. Show receipts or face consequences.
-- **Multi-Evidence Support**: Text, screenshots, URLs, and GitHub commits
-- **AI Verification**: Powered by Grok API (xAI) with Anthropic Claude fallback
-- **Vision Analysis**: Screenshots verified using Grok's vision capabilities
-- **Challenge System**: Failed attempts trigger typing tests, quizzes, timers, micro-tasks, or cooldowns
-- **Roast Bank**: Passive-aggressive feedback with adjustable intensity (gentle to HR-level)
-- **Dispute System**: Challenge AI verdicts with additional context
+</div>
 
-### Extended Task Management
-- **Priorities**: Low, medium, high priority levels
-- **Deadlines**: Optional deadline tracking with overdue indicators
-- **Acceptance Criteria**: Define what "done" means upfront
-- **Required Evidence Types**: Specify which evidence types are acceptable
-- **Task Status**: todo, in_progress, pending_verification, needs_revision, verified, blocked
-- **Attempt History**: Full audit trail of all verification attempts
+---
 
-### Deployment Modes
+## 📱 Screenshots
 
-#### Local Mode (Development)
-- Client-side verification using AI APIs directly
-- API keys stored securely on-device
-- Fast iteration, no server required
-- **Warning**: API keys are bundled in the app (not for production)
+| Onboarding | Task List | Task Detail | Submit Proof |
+|------------|-----------|-------------|--------------|
+| ![Onboarding](docs/screenshots/1-onboarding.png) | ![Task List](docs/screenshots/2-task-list.png) | ![Task Detail](docs/screenshots/3-task-detail.png) | ![Submit Proof](docs/screenshots/4-submit-proof.png) |
 
-#### Backend Mode (Production)
-- Server-proxied AI calls via Express.js backend
-- API keys never leave the server
-- MongoDB for multi-user task storage
-- JWT authentication
-- **Use this for competition submission**
+| Verification Success | Verification Failed | Challenge | Settings |
+|---------------------|---------------------|-----------|----------|
+| ![Success](docs/screenshots/5-success.png) | ![Failed](docs/screenshots/6-failed.png) | ![Challenge](docs/screenshots/7-challenge.png) | ![Settings](docs/screenshots/8-settings.png) |
 
-## Tech Stack
+---
 
-### Frontend
-- **Framework**: Flutter/Dart
-- **State Management**: Riverpod
-- **Routing**: go_router
-- **Storage**: shared_preferences + flutter_secure_storage
-- **HTTP**: dio (AI calls), http (backend API)
+## ✨ Features
 
-### Backend
-- **Runtime**: Node.js + Express.js
-- **Database**: MongoDB + Mongoose
-- **AI**: Grok API (xAI)
-- **Authentication**: JWT
-- **Security**: Helmet, CORS, rate limiting
+### 🎯 Core Features
+- **Smart Task Management**: Create tasks with clear acceptance criteria and deadlines
+- **AI Verification**: Powered by Grok AI & Anthropic Claude for intelligent proof validation
+- **Evidence Submission**: Support for 4 types of evidence:
+  - 📝 Text descriptions
+  - 📸 Screenshots
+  - 🔗 URLs
+  - 💻 GitHub commits
+- **Challenge System**: Face fun challenges when proof is weak to stay accountable
+- **Priority Levels**: High, Medium, Low with visual indicators
+- **Status Tracking**: Todo, In Progress, Pending Verification, Done, Blocked
 
-## Getting Started
+### 📊 Analytics & Insights
+- **Streak Tracking**: Monitor your daily completion streak
+- **Success Rate**: Track your proof acceptance rate
+- **Last 7 Days Chart**: Visual representation of your productivity
+- **Most Roasted Tasks**: See which tasks gave you the most trouble
+
+### 🎨 UI/UX Highlights
+- **Beautiful Purple/Violet Theme**: Modern, clean design
+- **Smooth Animations**: Confetti on success, shake on failure
+- **Roast Intensity Levels**: From "Gentle Nudge" to "Drill Sergeant"
+- **Bottom Navigation**: Easy access to Tasks, Stats, Challenges, Settings
+- **Filter System**: Quickly filter tasks by status (All, Todo, In Progress, Done)
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend (Flutter)
+```yaml
+Flutter SDK: 3.10.0
+Dart: 3.0.0
+
+Core Dependencies:
+- flutter_riverpod: ^2.0.0     # State management
+- go_router: ^6.0.0            # Navigation
+- shared_preferences: ^2.0.15  # Local storage
+- http: ^0.13.5                # API calls
+- google_fonts: ^4.0.3         # Typography
+
+AI Integration:
+- anthropic_sdk_dart: ^0.1.3   # Claude API
+
+Media & Files:
+- image_picker: ^0.8.6+1       # Camera/Gallery
+- share_plus: ^6.3.0           # Share receipts
+- path_provider: ^2.0.12       # File paths
+
+Utilities:
+- intl: ^0.17.0                # Internationalization
+- crypto: ^3.0.2               # Hashing
+```
+
+### Backend (Node.js)
+```json
+{
+  "runtime": "Node.js 18+",
+  "framework": "Express.js 4.18+",
+  "database": "MongoDB",
+  
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.7.0",
+    "dotenv": "^16.0.3",
+    "axios": "^1.4.0"
+  }
+}
+```
+
+### AI Providers
+- **Primary**: Grok AI (xAI) - Fast, cost-effective
+- **Fallback**: Anthropic Claude 3.5 Sonnet - High accuracy
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Flutter SDK 3.13.5+
-- Node.js 18+ (for backend)
-- MongoDB (for backend mode)
-- Grok API key from [console.x.ai](https://console.x.ai)
+- Flutter SDK 3.10.0 or higher
+- Node.js 18+ and npm
+- MongoDB (local or Atlas)
+- Grok API key (get from [console.x.ai](https://console.x.ai))
+- (Optional) Anthropic API key for fallback
 
-### Flutter App Setup
+### 📱 Flutter App Setup
 
-1. **Install dependencies**
-   ```bash
-   flutter pub get
-   ```
-
-2. **Run the app**
-   ```bash
-   flutter run
-   ```
-
-3. **Configure on first launch**
-   - Enter your Grok API key (or Anthropic key as fallback)
-   - Optionally add GitHub token for private repo verification
-   - Adjust roast level and strictness to taste
-
-### Backend Setup (Production Mode)
-
-1. **Navigate to backend directory**
-   ```bash
-   cd backend
-   ```
+1. **Clone the repository**
+```bash
+git clone https://github.com/ritikravi/ProofTask.git
+cd ProofTask
+```
 
 2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+```bash
+flutter pub get
+```
 
-3. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your values:
-   # XAI_API_KEY=xai-...
-   # MONGODB_URI=mongodb://localhost:27017/prooftask
-   # JWT_SECRET=your-secret-here
-   # PORT=5000
-   ```
+3. **Run the app**
+```bash
+# For development
+flutter run
 
-4. **Start MongoDB**
-   ```bash
-   # macOS with Homebrew:
-   brew services start mongodb-community
+# For Android release
+flutter build apk --release
 
-   # Or using Docker:
-   docker run -d -p 27017:27017 --name mongodb mongo:latest
-   ```
+# For iOS release
+flutter build ios --release
+```
 
-5. **Start the backend**
-   ```bash
-   npm start
-   ```
+4. **Configure API Keys** (in-app)
+   - Open the app → Settings
+   - Enter your Grok API key (xai-...)
+   - (Optional) Enter Anthropic API key for fallback
 
-6. **Configure Flutter app for backend mode**
-   - Open Settings in the app
-   - Enable "Use backend API"
-   - Enter backend URL: `http://localhost:5000` (or your server URL)
-   - Restart the app
+### 🖥️ Backend Setup
 
-## API Endpoints
+1. **Navigate to backend directory**
+```bash
+cd backend
+```
 
-### Authentication
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Configure environment variables**
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your credentials:
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/prooftask
+JWT_SECRET=your_super_secret_jwt_key_here
+
+# AI API Keys
+GROK_API_KEY=xai-your-grok-key
+ANTHROPIC_API_KEY=sk-ant-your-key
+
+# GitHub (optional)
+GITHUB_TOKEN=ghp_your_token
+```
+
+4. **Start the server**
+```bash
+# Development
+npm run dev
+
+# Production
+npm start
+```
+
+5. **Test the API**
+```bash
+# Health check
+curl http://localhost:5000/health
+
+# See backend/API_TESTING.md for detailed API documentation
+```
+
+---
+
+## 📖 Usage Guide
+
+### Creating Your First Task
+
+1. **Launch the app** and complete onboarding
+2. **Tap the + button** on the home screen
+3. **Fill in task details**:
+   - Title: "Write launch post"
+   - Description: "Published with a link"
+   - Priority: High
+   - Deadline: Select a date
+
+4. **Set acceptance criteria** (optional):
+   - At least 300 words
+   - Includes product screenshots
+   - Shares the live URL as proof
+
+5. **Tap "Create Task"**
+
+### Submitting Proof
+
+1. **Open a task** from your task list
+2. **Tap "Show me the receipts"**
+3. **Choose evidence type**:
+   - **Text**: Describe what you did in detail
+   - **Screenshot**: Upload an image from camera/gallery
+   - **URL**: Paste a link to your work
+   - **Commit**: GitHub commit or PR URL
+
+4. **Submit for verification**
+5. **Wait for AI verdict**
+
+### Understanding Verdicts
+
+- ✅ **Pass**: Proof accepted! Task marked complete
+- ⚠️ **Weak**: Technically counts, but could be better
+- ❌ **Fail**: Not enough proof → Face a challenge
+
+### Challenge Types
+
+When proof fails, you'll face one of these:
+- 📝 **Typing Pledge**: Type an accountability statement
+- ⏱️ **Focus Hold**: Stay in the app for X minutes
+- ❄️ **Cooldown**: Wait before you can retry
+- 🧠 **Quiz**: Answer questions about your task
+- 💡 **Explain**: Write a detailed explanation
+- 🎯 **Micro Task**: Complete a small related task
+
+---
+
+## 🏗️ Architecture
+
+### App Structure
+```
+lib/
+├── app/                    # App setup & theme
+├── core/                   # Models, storage, API client
+├── features/
+│   ├── onboarding/         # Welcome screen
+│   ├── tasks/              # Task management
+│   ├── challenges/         # Challenge system
+│   ├── stats/              # Analytics
+│   ├── settings/           # Configuration
+│   └── verification/       # AI verification
+└── shared/                 # Reusable widgets
+
+backend/
+├── src/
+│   ├── models/             # MongoDB schemas
+│   ├── routes/             # API endpoints
+│   ├── services/           # Business logic
+│   └── middleware/         # Auth, error handling
+```
+
+### Backend API Endpoints
+
+#### Authentication
 - `POST /api/auth/register` - Create account
-- `POST /api/auth/login` - Login and get JWT
+- `POST /api/auth/login` - Sign in
+- `GET /api/auth/me` - Get current user
 
-### Tasks
+#### Tasks
 - `GET /api/tasks` - List all tasks
 - `POST /api/tasks` - Create task
 - `GET /api/tasks/:id` - Get task details
-- `PATCH /api/tasks/:id` - Update task
+- `PUT /api/tasks/:id` - Update task
 - `DELETE /api/tasks/:id` - Delete task
-- `POST /api/tasks/:id/challenge/clear` - Clear challenge
-- `POST /api/tasks/:id/subtasks` - Break down task
 
-### Verification
-- `POST /api/verify/:taskId/submit` - Submit evidence
-- `POST /api/verify/:taskId/dispute` - Dispute verdict
+#### Verification
+- `POST /api/verify/submit` - Submit evidence
+- `POST /api/verify/dispute` - Appeal verdict
+- `POST /api/verify/challenge` - Generate challenge
 
-## Project Structure
+See [backend/API_TESTING.md](backend/API_TESTING.md) for detailed API documentation.
 
-```
-prooftask/
-├── lib/
-│   ├── app/                    # App shell and theme
-│   ├── core/                   # Models, storage, LLM providers, API client
-│   ├── features/
-│   │   ├── challenges/         # Challenge generation
-│   │   ├── onboarding/         # First-run setup
-│   │   ├── settings/           # Settings screen
-│   │   ├── stats/              # Statistics
-│   │   ├── tasks/              # Task list, detail, submission screens
-│   │   └── verification/       # Verification service
-│   └── shared/                 # Widgets, effects, utilities
-├── backend/
-│   ├── src/
-│   │   ├── middleware/         # Auth, error handling
-│   │   ├── models/             # Mongoose schemas
-│   │   ├── routes/             # Express routes
-│   │   └── services/           # Grok, verification, challenge logic
-│   ├── .env.example
-│   └── package.json
-└── README.md
+---
+
+## 🎨 Customization
+
+### Theme Colors
+Edit `lib/app/theme.dart`:
+```dart
+abstract class AppColors {
+  static const canvas = Color(0xFFA98BF5);      // Background
+  static const surface = Color(0xFF4A2FA8);     // Cards
+  static const lime = Color(0xFFD4F54A);        // Primary action
+  static const coral = Color(0xFFFF4D6D);       // Error/High priority
+  static const amber = Color(0xFFFFD166);       // Warning/Medium
+  static const ink = Color(0xFF1E1147);         // Text
+}
 ```
 
-## Competition Requirements
+### Roast Levels
+Edit roast intensity in Settings:
+1. **Gentle Nudge** - Supportive and kind
+2. **Friendly Jab** - Light-hearted
+3. **Honest Critique** - Direct but fair
+4. **Drill Sergeant** - Maximum accountability
 
-✅ **Evidence submission**: Text, screenshot, URL, commit  
-✅ **AI verification**: Grok vision + content analysis  
-✅ **Passive-aggressive feedback**: Roast bank with adjustable intensity  
-✅ **Accountability challenges**: Typing, quiz, timer, micro-task, cooldown  
-✅ **Backend mode**: API keys never in production client  
-✅ **MongoDB persistence**: Multi-user task storage  
-✅ **Authentication**: JWT-based user accounts  
+### Strictness Levels
+- **Lenient**: AI is more forgiving
+- **Normal**: Balanced verification
+- **Strict**: Higher proof standards
+- **Ruthless**: Extremely demanding
 
-## Architecture Highlights
+---
 
-### Security
-- API keys stored in secure enclave (iOS Keychain / Android Keystore)
-- Backend mode keeps secrets server-side only
-- PBKDF2 password hashing with per-user salts
-- SSRF protection on URL fetching
-- Rate limiting on AI endpoints
+## 🔐 Security Features
 
-### AI Integration
-- Grok provider with structured outputs (function calling)
-- Vision API for screenshot verification
-- Fallback to offline roast bank when AI unavailable
-- Dispute flow uses chain-of-thought reasoning
+- **SSRF Protection**: URL validation to prevent malicious requests
+- **Rate Limiting**: 100 requests per 15 minutes per IP
+- **JWT Authentication**: Secure token-based auth
+- **Helmet.js**: HTTP security headers
+- **CORS**: Configurable cross-origin requests
+- **Input Validation**: Sanitization on all endpoints
 
-### UX Details
-- No checkboxes—only proof matters
-- Streak tracking for daily consistency
-- Confetti + shake animations for victories (respects reduce-motion)
-- Dark mode UI with lime accent
+---
 
-## Development
+## 🧪 Testing
 
-### Running Tests
+### Run Flutter tests
 ```bash
 flutter test
 ```
 
-### Building for Production
+### Test backend
 ```bash
-# iOS
-flutter build ios --release
-
-# Android
-flutter build apk --release
-
-# Web
-flutter build web --release
+cd backend
+npm test
 ```
 
-### Environment Configuration
+### Manual testing
+See [backend/API_TESTING.md](backend/API_TESTING.md) for:
+- cURL examples
+- Postman collection
+- API response schemas
 
-**Local mode (dev)**: Enter API keys in app settings  
-**Backend mode (prod)**: Configure backend `.env`, enable in app settings
+---
 
-## Known Limitations
+## 📦 Build & Deploy
 
-- AI verification is assistive, not forensic—determined users can still fake proof
-- Screenshot analysis requires Grok vision model (grok-2-vision-1212)
-- URL verification uses HEAD requests and basic HTML parsing
-- GitHub commit verification requires public repos or PAT
+### Android APK
+```bash
+flutter build apk --release
+# Output: build/app/outputs/flutter-apk/app-release.apk
+```
 
-## License
+### iOS App
+```bash
+flutter build ios --release
+# Then archive in Xcode
+```
 
-This project was created for the competition. See competition rules for usage terms.
+### Backend Deployment
 
-## Acknowledgments
+#### Using Docker
+```bash
+cd backend
+docker build -t prooftask-backend .
+docker run -p 5000:5000 --env-file .env prooftask-backend
+```
 
-- Built with Flutter and Riverpod
-- Powered by Grok API (xAI)
-- Backend uses Express.js and MongoDB
-- Inspired by the universal struggle to prove we did the thing
+#### Using PM2
+```bash
+npm install -g pm2
+pm2 start src/index.js --name prooftask
+pm2 save
+```
+
+#### Environment Variables (Production)
+```env
+NODE_ENV=production
+PORT=5000
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/prooftask
+JWT_SECRET=super_secure_secret_change_this
+GROK_API_KEY=xai-...
+ANTHROPIC_API_KEY=sk-ant-...
+CORS_ORIGIN=https://your-app-domain.com
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **AI Providers**: xAI (Grok), Anthropic (Claude)
+- **UI Inspiration**: Modern task management apps
+- **Font**: Plus Jakarta Sans by Google Fonts
+- **Icons**: Material Icons & Cupertino Icons
+
+---
+
+## 📧 Contact
+
+**Ritik Raushan**  
+GitHub: [@ritikravi](https://github.com/ritikravi)  
+Project Link: [https://github.com/ritikravi/ProofTask](https://github.com/ritikravi/ProofTask)
+
+---
+
+## 🎯 Roadmap
+
+### Coming Soon
+- [ ] Social features (share tasks with friends)
+- [ ] Team workspaces
+- [ ] Custom challenge creation
+- [ ] Advanced analytics dashboard
+- [ ] Calendar integration
+- [ ] Habit tracking
+- [ ] Voice evidence submission
+- [ ] Web app version
+- [ ] Browser extension
+
+### Future Ideas
+- AI-generated task suggestions
+- Integration with productivity tools (Notion, Todoist, etc.)
+- Gamification with achievements and leaderboards
+- Export reports (PDF, CSV)
+- Multi-language support
+
+---
+
+<div align="center">
+
+**Built with ❤️ by developers who actually want to get things done**
+
+⭐ Star this repo if ProofTask helps you stay accountable!
+
+</div>
