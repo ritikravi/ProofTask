@@ -118,14 +118,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 const SizedBox(height: 12),
                 _FeatureCard(
                   icon: Icons.auto_awesome_rounded,
-                  iconColor: AppColors.lime,
+                  iconColor: AppColors.success,
                   title: 'Get AI verification',
                   subtitle: 'Powered by Grok & Anthropic',
                 ),
                 const SizedBox(height: 12),
                 _FeatureCard(
                   icon: Icons.shield_rounded,
-                  iconColor: AppColors.coral,
+                  iconColor: AppColors.surface,
                   title: 'Stay accountable',
                   subtitle: 'Face fun challenges when proof is weak',
                 ),
@@ -235,8 +235,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   child: ElevatedButton(
                     onPressed: _finish,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lime,
-                      foregroundColor: AppColors.ink,
+                      backgroundColor: AppColors.surface,
+                      foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -287,10 +287,10 @@ class _FeatureCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: Colors.white.withOpacity(0.1),
+          color: AppColors.outline,
           width: 1,
         ),
       ),
@@ -300,7 +300,7 @@ class _FeatureCard extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              color: iconColor.withOpacity(0.2),
+              color: iconColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
@@ -317,7 +317,7 @@ class _FeatureCard extends StatelessWidget {
                 Text(
                   title,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.ink,
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -325,7 +325,7 @@ class _FeatureCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.muted,
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
